@@ -55,14 +55,13 @@
     <script>
       let search = new Vue({
         el: '#search',
-        data: {
-          word: '',
-          changeWord: ''
-        },
+        
         data() {
           return {
             info: '',
-            next: 0
+            next: 0,
+            word: '',
+            changeWord: ''
           };
         },
         methods: {
