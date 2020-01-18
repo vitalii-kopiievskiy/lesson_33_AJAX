@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Retro';
+  src: url('font/retro.ttf') format('opentype');
+}
+@font-face {
+  font-family: 'Retro2';
+  src: url('font/retro2.ttf') format('opentype');
+}
+
+body {
+  color: white;
+  background: url('b483cc28452de29.jpg') 50% 10% / cover no-repeat;
+  font-family: 'Retro2';
+  font-weight: 200;
+
+  /* max-width: 100hv; */
+}
+.searchOn {
+  margin-top: 200px;
+}
+.info {
+  margin-top: 100px;
+  opacity: 0.8;
+  transform-origin: 0 50%;
+  transform: perspective(1000px) rotateY(-8deg);
+  filter: blur(0.8px);
+  height: 420px;
+}
+
+img {
+  height: 300px;
+  filter: sepia(63%);
+  border-radius: 5px;
+}
+
+p {
+  text-align: center;
+  color: black;
+}
+
+.nav {
+ 
+  margin-top: 50px;
+}
+
+.counter {
+  color: white;
+  padding-left: 30px;
+}

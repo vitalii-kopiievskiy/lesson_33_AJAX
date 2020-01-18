@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link href="style.css" rel="stylesheet" />
+
+    <title>AJAX</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="search">
+      <div class="row" >
+        <div class="col-4" >
+          <div class="searchOn">
+            <h1>OMDb API</h1>
+            <input type="text" v-model="word" /> <br />
+            <button @click="onSearch" >Search</button>
+            
+          </div>
+          </div>
+         
+          <div class="col-6  offset-2">
+            <div class="info">
+              <p><img :src="info.Poster" alt="" /></p>
+             
+              <p>{{info.Title}}</p>
+              <p class="year">{{info.Year}}</p>
+
+              <!-- <p>{{next+1}}</p> -->
+            </di v>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-1 offset-7">
+          <button @click="reduction" class="nav">previous</button>
+        </div>
+        <div class="col-1">
+          <p class="nav counter">{{next+1}}</p>
+        </div>
+        <div class="col-1">
+          <button class="nav" @click="add">next</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      let search = new Vue({
+        el: '#search',
+        data: {
+          word: '',
+          changeWord: ''
+        },
+        data() {
+          return {
+            info: '',
+            next: 0
+          };
+        },
+        methods: {
+          add() {
+            this.next++;
+          },
+          reduction() {
+            this.next--;
+          },
+          onSearch: function() {
+            this.changeWord = this.word;
+
+            axios
+              .get(
+                'http://www.omdbapi.com/?&s=' +
+                  this.changeWord +
+                  '&page=2&apikey=c19ba406'
+              )
+              .then(response => (this.info = response.data.Search[this.next]));
+          }
+        },
+        watch: {
+          next: function() {
+            this.onSearch();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
